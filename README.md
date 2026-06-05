@@ -9,7 +9,7 @@
 
 ## Why I Chose This Issue
 
-[1-2 paragraphs explaining why this issue interests you, how it matches your skills/learning goals, what you hope to learn]
+I chose "add W&B integration test for _log_figure dispatch (offline mode)" because it aligns with my background knowledge in Python as well as my experience with training AI models. The owner of the repo has stated clear goals/endpoints in the issue, making it easy to follow and understand. From reading the issue, I understand the core problem is figuring out how to "trick" W&B to run completely offline so we can verify the AI’s graphs are saving properly without an internet connection. I have already left a comment on the issue, and while waiting for a response, I am forking and cloning the repository to dive into the code and get comfortable debugging the setup.
 
 ---
 
