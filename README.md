@@ -1,9 +1,9 @@
-# Contribution [#]: [Issue Title]
+# Contribution #652: test(monitoring): add W&B integration test for _log_figure dispatch (offline mode)
 
-**Contribution Number:** [1 / 2 / 3]  
-**Student:** [Your Name]  
-**Issue:** [GitHub issue link]  
-**Status:** [Phase I / Phase II / Phase III / Phase IV] [In Progress / Complete]
+**Contribution Number:** 1  
+**Student:** Emerson Palaganas  
+**Issue:** https://github.com/tinaudio/synth-setter/issues/652
+**Status:** Phase I [Complete]
 
 ---
 
