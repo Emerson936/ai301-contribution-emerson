@@ -17,19 +17,19 @@ I chose "add W&B integration test for _log_figure dispatch (offline mode)" becau
 
 ### Problem Description
 
-[In your own words, what's broken or missing?]
+The repository is missing a real end-to-end integration test to verify that graphs are sucessfully saved when using Weights & Biases (WandbLogger). While TensorBoard has an offline integration test, W&B is only covered by shallow unit tests with mock data because it normally requires an internet connection to run.
 
 ### Expected Behavior
 
-[What should happen?]
+There should be an automated test that forces W&B into an offline mode, runs a quick 1-step fake training loop, and saves the graphs locally. The test should then peek into the local files to prove that the graph key exists and matches the correct training step.
 
 ### Current Behavior
 
-[What actually happens?]
+Right now, if a future update accidentally breaks the way our plotting callbacks talk to W&B, our testing robot will not catch it. The code runs fine in unit tests, but is not being tested as a complete system.
 
 ### Affected Components
 
-[Which parts of the codebase are involved?]
+"src/utils/callbacks.py" houses the _log_figure dispatch helper and plotting the callback that we need to execute. "tests/test_callbacks.py" is the test file where the new offline testing function will be written to mirror the TensorBoard setup.
 
 ---
 
