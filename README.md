@@ -37,7 +37,7 @@ Right now, if a future update accidentally breaks the way our plotting callbacks
 
 ### Environment Setup
 
-The repository has a `getting-started.md` file, which is really helpful and clear on how to setup the project.
+The repository has a `getting-started.md` file, which is really helpful and clear on how to setup the project. The issue also has clear instructions and endpoints.
 
 ### Steps to Reproduce
 
@@ -57,11 +57,11 @@ The repository has a `getting-started.md` file, which is really helpful and clea
 
 ### Analysis
 
-[Your analysis of the root cause - what's causing the issue?]
+The root cause is a gap in test coverage: the W&B logging branch of `_log_figure` is never tested with a real, running PyTorch Lighting Trainer. Because W&B normally requires a cloud login and internet connection, it was skipped from integration testing.
 
 ### Proposed Solution
 
-[High-level description of your fix approach]
+We will write an isolated integration test that forces `WandbLogger` to run in an offline environment `(WANDB_MODE=offline)`. This allows a mini-training loop to execute completely on the local machine and dump its telemetry data into a temporary directory, where we can verify that the graphs are saved.
 
 ### Implementation Plan
 
