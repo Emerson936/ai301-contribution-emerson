@@ -67,14 +67,15 @@ We will write an isolated integration test that forces `WandbLogger` to run in a
 
 Using UMPIRE framework (adapted):
 
-**Understand:** [Restate the problem]
+**Understand:** We need to verify that `_log_figure` successfully sends plots to W&B during a real training run without using the internet or requiring an API key.
 
-**Match:** [What similar patterns/solutions exist in the codebase?]
+**Match:** We can match the exact pattern of the existing TensorBoard integration test in `tests/test_callbacks.py`, which downsizes the model and uses a fast development run to test file serialization locally.
 
 **Plan:** [Step-by-step implementation plan]
-1. [Modify file X to do Y]
-2. [Add function Z]
-3. [Update tests]
+1. Add a new test function `test_wandb_figure_logging_integration` to `tests/test_callbacks.py` and decorate it with `@pytest.mark.slow`.
+2.Use `monkeypatch` to set `WANDB_MODE="offline"` and initialize WandbLogger with a temporary `save_dir`.
+3. Spin up a mini `Trainer` using `fast_dev_run=True`, run `trainer.fit()`, and call `wandb.finish()` to flush files to disk.
+4. Write file-parsing logic to scan the generated local `wandb-history.jsonl` file and assert that the "plot" key exists and matches the trainer's `global_step`.
 
 **Implement:** [Link to your branch/commits as you work]
 
