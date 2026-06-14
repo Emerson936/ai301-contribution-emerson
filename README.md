@@ -37,7 +37,7 @@ Right now, if a future update accidentally breaks the way our plotting callbacks
 
 ### Environment Setup
 
-[Notes on setting up your local development environment - challenges you faced, how you solved them]
+The repository has a 'getting-started.md' file, which is really helpful and clear on how to setup the project.
 
 ### Steps to Reproduce
 
