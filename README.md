@@ -41,15 +41,14 @@ The repository has a `getting-started.md` file, which is really helpful and clea
 
 ### Steps to Reproduce
 
-1. [Step 1]
-2. [Step 2]
-3. [Observed result]
+1. Open tests/test_callbacks.py and analyze the existing integration test for TensorBoard (@pytest.mark.slow). Note how it creates a miniature KSinFlowMatchingModule and monitors file creation.
+2. Search the entire test suite for any instance where WandbLogger is initialized inside a real, running PyTorch Lightning Trainer block to see if end-to-end telemetry file writing is verified.
+3. There are zero integration tests exercising the WandbLogger execution paths of our _log_figure dispatch helper. The only test coverage for W&B is restricted to unit tests using isolated mock objects (unittest.mock), meaning the actual file-writing and integration layers are entirely unchecked.
 
 ### Reproduction Evidence
 
-- **Commit showing reproduction:** [Link to commit in your fork]
-- **Screenshots/logs:** [If applicable]
-- **My findings:** [What you discovered during reproduction]
+- **Commit showing reproduction:** [[Link to commit in your fork]](https://github.com/Emerson936/synth-setter)
+- **My findings:** After analyzing src/utils/callbacks.py, I confirmed that _log_figure contains explicit conditional routing specifically for WandbLogger. However, because the test suite lacks a test that sets WANDB_MODE=offline, there is currently no safety net preventing a future PR from breaking the tracking system's interaction with real W&B internal telemetry files.
 
 ---
 
@@ -77,11 +76,11 @@ Using UMPIRE framework (adapted):
 3. Spin up a mini `Trainer` using `fast_dev_run=True`, run `trainer.fit()`, and call `wandb.finish()` to flush files to disk.
 4. Write file-parsing logic to scan the generated local `wandb-history.jsonl` file and assert that the "plot" key exists and matches the trainer's `global_step`.
 
-**Implement:** [Link to your branch/commits as you work]
+**Implement:** https://github.com/Emerson936/synth-setter
 
-**Review:** [Self-review checklist - does it follow the project's contribution guidelines?]
+**Review:** *Need to check this with their standards
 
-**Evaluate:** [How will you verify it works?]
+**Evaluate:** Run pytest tests/test_callbacks.py -k test_wandb_figure_logging_integration -m slow locally with Wi-Fi turned off to ensure it passes successfully and strictly offline.
 
 ---
 
