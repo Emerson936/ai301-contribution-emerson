@@ -71,10 +71,12 @@ Using UMPIRE framework (adapted):
 **Match:** We can match the exact pattern of the existing TensorBoard integration test in `tests/test_callbacks.py`, which downsizes the model and uses a fast development run to test file serialization locally.
 
 **Plan:** [Step-by-step implementation plan]
-1. Add a new test function `test_wandb_figure_logging_integration` to `tests/test_callbacks.py` and decorate it with `@pytest.mark.slow`.
-2. Use `monkeypatch` to set `WANDB_MODE="offline"` and initialize WandbLogger with a temporary `save_dir`.
-3. Spin up a mini `Trainer` using `fast_dev_run=True`, run `trainer.fit()`, and call `wandb.finish()` to flush files to disk.
-4. Write file-parsing logic to scan the generated local `wandb-history.jsonl` file and assert that the "plot" key exists and matches the trainer's `global_step`.
+1. Read `src/utils/callbacks.py` to understand `_log_figure`'s W&B branch exactly
+2. Read the existing `tests/test_callbacks.py` to find the TB integration test and use it as a template
+3. Find `KSinFlowMatchingModule` and `PlotLossPerTimestep` to understand their minimal config
+4. Write a new test function in `tests/test_callbacks.py`
+5. Run `make test-fast` to make sure nothing is broken, then `make test-full-cpu` to run the new slow test
+6. Run `make format` before commiting
 
 **Implement:** https://github.com/Emerson936/synth-setter
 
