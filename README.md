@@ -90,18 +90,18 @@ Using UMPIRE framework (adapted):
 
 ### Unit Tests
 
-- [ ] Test case 1: [Description]
-- [ ] Test case 2: [Description]
-- [ ] Test case 3: [Description]
+- [ ] Test case 1: Verify `_log_figure` dispatches to WandbLogger
+- [ ] Test case 2:
+- [ ] Test case 3: 
 
 ### Integration Tests
 
-- [ ] Integration scenario 1
+- [ ] Integration scenario 1: Test if Plots are saved locally in offline mode
 - [ ] Integration scenario 2
 
 ### Manual Testing
 
-[What you tested manually and results]
+(Will update this)
 
 ---
 
@@ -125,9 +125,9 @@ Using UMPIRE framework (adapted):
 
 ### Code Changes
 
-- **Files modified:** [List]
+- **Files modified:** callback.py, test_callbacks.py
 - **Key commits:** [Links to important commits]
-- **Approach decisions:** [Why you chose certain approaches]
+- **Approach decisions:** Took some time to understand the code itself to help get a bigger picture of what I am doing
 
 ---
 
