@@ -107,13 +107,21 @@ Using UMPIRE framework (adapted):
 
 ## Implementation Notes
 
-### Week [X] Progress
+### Week 3 Progress
 
-[What you built this week, challenges faced, decisions made]
+**What I built**
+- Fixes in `callback.py` (explained in challenges)
+- New integration test in `test_callbacks.py`
+    - Runs a training loop (one epoch, tiny dataset, CPU) with a real W&B logger attached in “offline” mode
+    - Looks inside W&B’s local output folder for any PNG file whose name starts with _plot. If it exists the test passes
+ 
+**Challenges faced**
+- `PlotLossPerTimestep._compute_losses` unpacked the batch with 3 items.
+- Collate function adds a 4th item, Python would crash trying to unpack 4 things into 3 variables
+- Fixed it by adding `*` to the list of items (python’s way of adding an extra spot but ignoring it when used)
 
-### Week [Y] Progress
-
-[Continue documenting as you work]
+**Commits**
+- No commits just yet: want to do more testing and check if requirements/asks are met
 
 ### Code Changes
 
