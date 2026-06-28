@@ -129,6 +129,26 @@ Using UMPIRE framework (adapted):
 - **Key commits:** [Links to important commits]
 - **Approach decisions:** Took some time to understand the code itself to help get a bigger picture of what I am doing
 
+
+### Week 4 Progress
+
+**What I built**
+- Subclass `WandbLogger` with a think wrapper that record the step from each `log_image` call, then after trainer.fit() assert that the recorded step equals `trainer.global_step`
+ 
+**Challenges faced**
+- `Fast_dev_run=True` suppresses logging. This means we cannot use it even though the developer asks for it in the issue. Using `max_epochs=1` works. This will need to be talked with dev.
+
+**Commits**
+- Committed the code from last week. 2/4 endpoints are done, and working on the other half:
+    - Need to use `max_epochs=1`
+    - Need to read the step back from the offline file (This is actually the code written for the “What I built” section)
+
+### Code Changes
+
+- **Files modified:** callback.py, test_callbacks.py
+- **Key commits:** [Links to important commits]
+- **Approach decisions:** Took some time to understand the code itself to help get a bigger picture of what I am doing
+
 ---
 
 ## Pull Request
